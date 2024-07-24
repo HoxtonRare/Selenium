@@ -47,6 +47,6 @@ public class TestWb {
         driver.findElement(By.xpath("//span[@class = 'navbar-pc__icon navbar-pc__icon--basket']")).click();
 
         WebElement product = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class = 'accordion__goods-count']")));
-        asserts.checkAddedCart(EXPECTED_TEXT, product);
+        Asserts.checkAddedCart(EXPECTED_TEXT, product);
     }
 }
