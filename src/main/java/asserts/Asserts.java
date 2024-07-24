@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class asserts {
+public class Asserts {
 
     public static void checkForNewTab(String originalTab, WebDriver driver) {
         assertNotEquals(originalTab, driver.getWindowHandle());

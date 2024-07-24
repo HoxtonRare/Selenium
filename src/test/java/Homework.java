@@ -1,4 +1,5 @@
-import asserts.asserts;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,14 +7,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static asserts.asserts.*;
+import static asserts.Asserts.*;
 
 import java.time.Duration;
 import java.util.Set;
 
 public class Homework {
-    WebDriver driver = new ChromeDriver();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    @BeforeEach
+    public void setUp() {
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @AfterEach
+    public void close() {
+        if(driver != null) {
+            driver.quit();
+        }
+    }
 
     @Test
     public void testWindows() {
@@ -36,11 +50,9 @@ public class Homework {
 
         checkText(expectedText, actualText);
 
-        driver.close();
         driver.switchTo().window(originalTab);
 
         checkOriginalTab(originalTab, driver);
-        driver.close();
     }
 
     @Test
@@ -68,6 +80,5 @@ public class Homework {
         WebElement element = driver.findElement(By.id("result"));
 
         checkForEnteredText(expectedResult, element);
-        driver.close();
     }
 }
